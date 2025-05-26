@@ -1,0 +1,49 @@
+#ifndef CHAINSAW_CHAINSAWWDEFINE
+#define CHAINSAW_CHAINSAWWDEFINE
+
+// FOR_STEP(i, 0, 10, 2) 
+// |
+// v
+// for(int i = 0; i < 10; i += 2)
+#ifdef FOR_STEP
+#undef FOR_STEP
+#endif // FOR_STEP
+#define FOR_STEP(var_name, begin_number, end_number, step) for(int var_name = begin_number; var_name < end_number; var_name += step)
+
+// FOR(i, 0, 10) 
+// |
+// v
+// for(int i = 0; i < 10; ++i)
+#ifdef FOR
+#undef FOR
+#endif // FOR
+#define FOR(var_name, begin_number, end_number) for(int var_name = begin_number; var_name < end_number; ++var_name)
+
+// FOR_0(i, 0, 10) 
+// |
+// v
+// for(int i = 0; i < 10; ++i)
+#ifdef FOR_0
+#undef FOR_0
+#endif // FOR_0
+#define FOR_0(var_name, end_number) FOR(var_name, 0, end_number)
+
+// simplest
+// For(10)
+// for(int i = 0; i < 10; ++i)
+#ifdef For
+#undef For
+#endif // For
+#define For(size) FOR_0(i, size)
+
+// FOR_ALL(i, data)
+// |
+// v
+// vector<int> data;
+// for(auto i : data)
+#ifdef FOR_ALL
+#undef FOR_ALL
+#endif // FOR_ALL
+#define FOR_ALL(var_name, item) for(auto var_name : item)
+
+#endif // !CHAINSAW_CHAINSAWWDEFINE

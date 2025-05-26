@@ -1,0 +1,74 @@
+[
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\impl\\chartool.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\impl\\chartool.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/impl/chartool.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/impl/chartool.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\impl\\command.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\impl\\command.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/impl/command.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/impl/command.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\impl\\option.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\impl\\option.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/impl/option.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/impl/option.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\impl\\print.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\impl\\print.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/impl/print.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/impl/print.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\impl\\read_config_message.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\impl\\read_config_message.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/impl/read_config_message.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/impl/read_config_message.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\impl\\readwritefile.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\impl\\readwritefile.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/impl/readwritefile.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/impl/readwritefile.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\error_message\\impl\\print_err.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\error_message\\impl\\print_err.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/error_message/impl/print_err.cpp",
+  "output": "CMakeFiles/chainsaw.dir/error_message/impl/print_err.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\argv\\impl\\argv_tool.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\argv\\impl\\argv_tool.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/argv/impl/argv_tool.cpp",
+  "output": "CMakeFiles/chainsaw.dir/argv/impl/argv_tool.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\html\\impl\\table.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\html\\impl\\table.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/html/impl/table.cpp",
+  "output": "CMakeFiles/chainsaw.dir/html/impl/table.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\markdown\\impl\\table.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\markdown\\impl\\table.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/markdown/impl/table.cpp",
+  "output": "CMakeFiles/chainsaw.dir/markdown/impl/table.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\stringtool\\impl\\cut.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\stringtool\\impl\\cut.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/stringtool/impl/cut.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/stringtool/impl/cut.cpp.obj"
+},
+{
+  "directory": "D:/lib/chainsaw1.0.1/source/build",
+  "command": "D:\\app\\mingw64\\bin\\g++.exe  @CMakeFiles/chainsaw.dir/includes_CXX.rsp -g -o CMakeFiles\\chainsaw.dir\\common\\stringtool\\impl\\stringtool.cpp.obj -c D:\\lib\\chainsaw1.0.1\\source\\include\\chainsaw\\common\\stringtool\\impl\\stringtool.cpp",
+  "file": "D:/lib/chainsaw1.0.1/source/include/chainsaw/common/stringtool/impl/stringtool.cpp",
+  "output": "CMakeFiles/chainsaw.dir/common/stringtool/impl/stringtool.cpp.obj"
+}
+]
