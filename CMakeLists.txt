@@ -2,4 +2,8 @@ cmake_minimum_required(VERSION 3.10.0)
 
 project(chainsaw VERSION 1.0.2 LANGUAGES CXX)
 
-add_subdirectory(src ../install)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../install/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../install/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../install/lib)
+
+add_subdirectory(src)
