@@ -1,6 +1,7 @@
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_sources(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/print_err.cpp)
+add_library(error_message_obj OBJECT
+    print_err.cpp
+)
 
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include
-    DESTINATION error_message
+target_include_directories(error_message_obj PUBLIC
+    ${PROJECT_SOURCE_DIR}/src/error_message/include
 )

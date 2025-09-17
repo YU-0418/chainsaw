@@ -1,2 +1,7 @@
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_sources(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/argv_tool.cpp)
+add_library(argv_obj OBJECT
+    argv_tool.cpp
+)
+
+target_include_directories(argv_obj PUBLIC
+    ${PROJECT_SOURCE_DIR}/src/argv/include
+)

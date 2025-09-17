@@ -1,2 +1,7 @@
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)
-target_sources(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR}/table.cpp)
+add_library(markdown_obj OBJECT
+    table.cpp
+)
+
+target_include_directories(markdown_obj PUBLIC
+    ${PROJECT_SOURCE_DIR}/src/markdown/include
+)
