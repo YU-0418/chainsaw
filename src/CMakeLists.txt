@@ -21,6 +21,7 @@ target_include_directories(chainsaw PUBLIC
     ${PROJECT_SOURCE_DIR}/src/error_message/include
     ${PROJECT_SOURCE_DIR}/src/html/include
     ${PROJECT_SOURCE_DIR}/src/markdown/include
+    ${PROJECT_SOURCE_DIR}/src/safe_struct
 )
 
 target_link_libraries(chainsaw -pthread)
@@ -37,7 +38,7 @@ add_subdirectory(markdown)
 add_subdirectory(argv)
 
 # 模块列表
-set(MODULES common argv error_message html markdown)
+set(MODULES common argv error_message html markdown safe_struct)
 
 # 循环安装各模块头文件
 foreach(module ${MODULES})
