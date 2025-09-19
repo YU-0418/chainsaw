@@ -18,16 +18,16 @@ namespace chainsaw
         // # symb
         // 7
         // -> symbol is 7
-        markdown_table(string config_file);
+        markdown_table(std::string config_file);
 
         // read symbol
         // also you can set the symbol in config file.
         void read_symbol(char c);
         
-        void print(string file, string save_file, bool has_tittle = true);
+        void print(std::string file, std::string save_file, bool has_tittle = true);
 
     private:
-        void print_error(string message);
+        void print_error(std::string message);
     };
 
 } // namespace chainsaw

@@ -1,12 +1,12 @@
 #include "print_err.h"
 
-void chainsaw::print_error(string message, string class_msg)
+void chainsaw::print_error(std::string message, std::string class_msg)
 {
-    cerr << "ERROR:";
+    std::cerr << "ERROR:";
     if (class_msg.size() > 0)
     {
-        cerr << "[chainsaw->" << class_msg << "]->";
+        std::cerr << "[chainsaw->" << class_msg << "]->";
     }
 
-    cerr << "[" << message << "]" << endl;
+    std::cerr << "[" << message << "]" << std::endl;
 }

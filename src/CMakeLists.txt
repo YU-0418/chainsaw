@@ -1,5 +1,8 @@
 include_directories(.)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # 汇总所有对象库成一个大库
 add_library(chainsaw STATIC
     $<TARGET_OBJECTS:common_obj>
@@ -20,6 +23,7 @@ target_include_directories(chainsaw PUBLIC
     ${PROJECT_SOURCE_DIR}/src/markdown/include
 )
 
+target_link_libraries(chainsaw -pthread)
 
 # 安装大库
 install(TARGETS chainsaw
@@ -37,7 +41,14 @@ set(MODULES common argv error_message html markdown)
 
 # 循环安装各模块头文件
 foreach(module ${MODULES})
-    install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/${module}/include
+    install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/${module}/include/
             DESTINATION include/${module}
             FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
 endforeach()
+
+# 安装顶层头文件
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp" PATTERN "chainsaw_define"
+        PATTERN "*/" EXCLUDE   # 排除子目录
+)

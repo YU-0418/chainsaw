@@ -11,23 +11,23 @@ void chainsaw::check_argv(int argc, char **argv, bool print)
     {
         if (!print)
             return;
-        cout << "input parameter:";
+        std::cout << "input parameter:";
 
         for (int i = 1; i < argc; ++i)
         {
-            cout << "[" << argv[i] << "]";
+            std::cout << "[" << argv[i] << "]";
             if (i != argc - 1)
             {
-                cout << ", ";
+                std::cout << ", ";
             }
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 
-vector<string> chainsaw::recognize_argv(int argc, char **argv)
+std::vector<std::string> chainsaw::recognize_argv(int argc, char **argv)
 {
-    vector<string> data;
+    std::vector<std::string> data;
     if (argc != 1)
     {
         for (int i = 1; i < argc; ++i)
@@ -39,23 +39,23 @@ vector<string> chainsaw::recognize_argv(int argc, char **argv)
     return data;
 }
 
-chainsaw::ARGV::ARGV(vector<string> data) : cmd(data)
+chainsaw::ARGV::ARGV(std::vector<std::string> data) : cmd(data)
 {
 }
 
 chainsaw::ARGV::ARGV(int argc, char **argv) : ARGV(recognize_argv(argc, argv)) {}
 
-bool chainsaw::ARGV::is_contain(string str)
+bool chainsaw::ARGV::is_contain(std::string str)
 {
     return cmd.find(str);
 }
 
-vector<string> chainsaw::ARGV::get_argv(string option)
+std::vector<std::string> chainsaw::ARGV::get_argv(std::string option)
 {
     return cmd.get_option_arg(option);
 }
 
-void chainsaw::ARGV::print_error(string message)
+void chainsaw::ARGV::print_error(std::string message)
 {
     chainsaw::print_error(message, "ARGV");
 }

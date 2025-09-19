@@ -3,13 +3,16 @@
 
 namespace chainsaw
 {
+    bool is_upper_char(char c);
+    bool is_lower_char(char c);
+
     // [a,z] -> [A,Z]
     char to_upper(char c);
 
     // [A,Z] -> [a,z]
     char to_lower(char c);
 
-    // [a,z]+[A,Z]?
+    // [a,z]&[A,Z]?
     bool is_letter(char c);
 
     // [0,9]?

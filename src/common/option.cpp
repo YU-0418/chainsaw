@@ -1,6 +1,6 @@
 #include "option.h"
 
-chainsaw::option::option(string s)
+chainsaw::option::option(std::string s)
 {
     if (s.empty())
         return;
@@ -23,7 +23,7 @@ chainsaw::option::option(string s)
     }
 }
 
-void chainsaw::option::print_error(string message)
+void chainsaw::option::print_error(std::string message)
 {
     chainsaw::print_error(message, "option");
 }
@@ -33,7 +33,7 @@ bool chainsaw::option::is_contain(char c)
     return data.end() != std::find(data.begin(), data.end(), c);
 }
 
-bool chainsaw::option::is_contain(string str)
+bool chainsaw::option::is_contain(std::string str)
 {
     bool res = true;
 

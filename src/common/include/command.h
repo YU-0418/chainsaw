@@ -13,44 +13,44 @@ namespace chainsaw
     {
         struct node
         {
-            string value;
-            vector<string> arg;
+            std::string value;
+            std::vector<std::string> arg;
 
             // mode 0 -> arg
             // mode 1 -> value=arg
             int mode = 0;
 
-            bool empty();
+            bool empty() const;
 
             void clear();
         };
 
-        vector<node> all;
+        std::vector<node> all;
 
     public:
         // --word=xxx -> [word,xxx]
         // -C[space]xxx -> [C,xxx]
         // -Cxxx -> [C,xxx]
         // -c=xxx -> [c,xxx]
-        command(string s);
+        command(std::string s);
 
-        command(vector<string> arg);
-
-        //
-        bool find(string option);
+        command(std::vector<std::string> arg);
 
         //
-        vector<string> get_option_arg(string option);
+        bool find(std::string option);
+
+        //
+        std::vector<std::string> get_option_arg(std::string option);
 
         // print all command
         void print();
 
     private:
-        void parse_string_list(vector<string> data);
+        void parse_string_list(std::vector<std::string> data);
 
         void add_data(node &buffer);
 
-        void print_error(string message);
+        void print_error(std::string message);
     };
 } // namespace chainsaw
 

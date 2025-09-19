@@ -1,60 +1,190 @@
 #include "print.h"
+#include <iomanip>
+#include <sstream>
 
-void head()
+chainsaw::SafeLogger &chainsaw::SafeLogger::instance()
 {
-    cout << "[ chainsaw ]";
+    static SafeLogger inst;
+    return inst;
 }
 
-void chainsaw::print_chainsaw_head(char c)
+void chainsaw::SafeLogger::setLogFile(std::string const &filename)
 {
-    head();
+    std::lock_guard<std::mutex> lock(m_mutex);
 
-    if (c == -1)
+    m_log_file.open(filename, std::ios::out | std::ios::app);
+    if (!m_log_file.is_open())
     {
-        cout << "^_^ ";
-    }
-    else if (c == -2)
-    {
-        cout << "v_v ";
-    }
-    else
-    {
-        cout << " -" << c << " ";
+        std::cerr << "Failed to open log file: " << filename << std::endl;
     }
 }
 
-string convert2number(int i)
+void chainsaw::SafeLogger::single(std::string s)
 {
-    string res = " -- ";
+    judge_headtype(s);
+    log(LogLevel::INFO, s);
+    if (m_type != HeadType::Normal)
+        m_type = HeadType::Normal;
+}
 
-    while (i >= 1000)
-    {
-        i -= 1000;
-    }
+chainsaw::SafeLogger::~SafeLogger()
+{
+    if (m_log_file.is_open())
+        m_log_file.close();
+}
 
-    if (i < 10)
+std::string chainsaw::SafeLogger::getTimeStamp() const
+{
+    auto now = std::chrono::system_clock::now();
+    auto itt = std::chrono::system_clock::to_time_t(now);
+    std::tm tm{};
+    localtime_r(&itt, &tm);
+    std::ostringstream oss;
+    // oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+    oss << std::put_time(&tm, "%m-%d %H:%M:%S");
+    return oss.str();
+}
+
+const char *chainsaw::SafeLogger::levelToString(LogLevel level) const
+{
+    switch (level)
     {
-        res = "  " + std::to_string(i) + " ";
+    case LogLevel::INFO:
+        return "INFO";
+    case LogLevel::WARN:
+        return "WARN";
+    case LogLevel::ERROR:
+        return "ERROR";
+    default:
+        return "UNKNOWN";
     }
-    else if (i < 100)
+}
+
+std::string chainsaw::SafeLogger::levelToColorString(LogLevel level) const
+{
+    switch (level)
     {
-        res = " " + std::to_string(i) + " ";
+    case LogLevel::INFO:
+        return "\033[32mINFO"; // 绿色
+    case LogLevel::WARN:
+        return "\033[33mWARN"; // 黄色
+    case LogLevel::ERROR:
+        return "\033[31mERR "; // 红色
+    default:
+        return "UNKNOWN";
     }
-    else
+}
+
+std::string chainsaw::SafeLogger::stripAnsiCodes(const std::string &s) const
+{
+    std::string result;
+    bool inEscape = false;
+    for (char c : s)
     {
-        res = std::to_string(i) + " ";
+        if (c == '\033')
+        {
+            inEscape = true;
+            continue;
+        }
+        if (inEscape)
+        {
+            if (c == 'm')
+            {
+                inEscape = false;
+            }
+            continue;
+        }
+        result += c;
+    }
+    return result;
+}
+
+std::string chainsaw::SafeLogger::chainsaw_head() const
+{
+    std::string res = "";
+    switch (m_type)
+    {
+    case HeadType::HI:
+        res += " (= ";
+        break;
+    case HeadType::IH:
+        res += " =) ";
+        break;
+    case HeadType::Normal:
+        res += " -- ";
+        break;
+    case HeadType::LETTER:
+    {
+        std::string buffer(" -- ");
+        buffer[2] = m_char;
+        res += buffer;
+    }
+    break;
+    default:
+        std::cerr << "HeadType is error!" << std::endl;
+        res += " -- ";
+        break;
     }
 
     return res;
 }
 
-void chainsaw::print_chainsaw_number(int number)
+void chainsaw::SafeLogger::judge_headtype(std::string value)
 {
-    head();
-    cout << convert2number(number);
+    if (value == "hi" || value == "HI" || value == "hello" || value == "HELLO" || value == "hey" || value == "HEY")
+    {
+        m_type = HeadType::HI;
+    }
+
+    if (value == "ih" || value == "IH" || value == "bye" || value == "BYE" || value == "")
+    {
+        m_type = HeadType::IH;
+    }
 }
 
-void chainsaw::print_tips(string tips)
+void chainsaw::SafeLogger::reset_headtype()
 {
-    cout << tips << ":";
+    m_type = HeadType::Normal;
+    m_char = '-';
+}
+
+template <>
+void chainsaw::SafeLogger::single(std::string value, std::string tip)
+{
+    if (tip.empty())
+    {
+        judge_headtype(value);
+        log(LogLevel::INFO, value);
+    }
+    else
+    {
+        log(LogLevel::INFO, tip, m_tip_symbol, value);
+    }
+}
+
+template <>
+void chainsaw::SafeLogger::single(bool value, std::string tip)
+{
+    std::string data = value ? "True" : "False";
+    if (tip.empty())
+    {
+        log(LogLevel::INFO, data);
+    }
+    else
+    {
+        log(LogLevel::INFO, tip, m_tip_symbol, data);
+    }
+}
+
+template <>
+void chainsaw::SafeLogger::single(char value, std::string tip)
+{
+    if (tip.empty())
+    {
+        log(LogLevel::INFO, (int)value);
+    }
+    else
+    {
+        log(LogLevel::INFO, tip, m_tip_symbol, (int)value);
+    }
 }

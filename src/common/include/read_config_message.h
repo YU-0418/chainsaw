@@ -12,31 +12,31 @@ namespace chainsaw
     {
         struct kv
         {
-            string key; // #[space]xxx
-            vector<string> value;
+            std::string key; // #[space]xxx
+            std::vector<std::string> value;
 
             bool empty();
 
             void clear();
         };
 
-        vector<kv> data;
+        std::vector<kv> data;
 
     public:
-        ReadConfigMessage(string config_file);
+        ReadConfigMessage(std::string config_file);
 
         // key=xxx
         // we will find key=#[space]xxx in data.
-        vector<string> get_value(string key);
+        std::vector<std::string> get_value(std::string key);
 
         // key=xxx
         // we will find key-prefix=#[space]xxx
-        vector<string> get_value_prefix(string key);
+        std::vector<std::string> get_value_prefix(std::string key);
 
         void print();
 
     private:
-        void print_error(string message);
+        void print_error(std::string message);
     };
 } // namespace chainsaw
 

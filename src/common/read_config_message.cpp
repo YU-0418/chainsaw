@@ -11,12 +11,12 @@ void chainsaw::ReadConfigMessage::kv::clear()
     value.clear();
 }
 
-chainsaw::ReadConfigMessage::ReadConfigMessage(string config_file)
+chainsaw::ReadConfigMessage::ReadConfigMessage(std::string config_file)
 {
-    vector<string> data = read_file(config_file, false);
+    std::vector<std::string> data = read_file(config_file, false);
 
     kv buffer;
-    for (string s : data)
+    for (std::string s : data)
     {
         stringtool tool(s);
         if (tool.startsWith("# "))
@@ -47,11 +47,11 @@ chainsaw::ReadConfigMessage::ReadConfigMessage(string config_file)
     }
 }
 
-vector<string> chainsaw::ReadConfigMessage::get_value(string key)
+std::vector<std::string> chainsaw::ReadConfigMessage::get_value(std::string key)
 {
     auto buffer = std::find_if(data.begin(), data.end(), [&](kv const &buffer)
                                { return buffer.key == "# " + key; });
-    vector<string> res;
+    std::vector<std::string> res;
     if (buffer != data.end())
     {
         res = buffer->value;
@@ -60,9 +60,9 @@ vector<string> chainsaw::ReadConfigMessage::get_value(string key)
     return res;
 }
 
-vector<string> chainsaw::ReadConfigMessage::get_value_prefix(string key)
+std::vector<std::string> chainsaw::ReadConfigMessage::get_value_prefix(std::string key)
 {
-    vector<string> res;
+    std::vector<std::string> res;
     auto buffer = std::find_if(data.begin(), data.end(), [&](kv const &buffer)
                                { return stringtool(buffer.key).startsWith("# " + key); });
 
@@ -75,19 +75,19 @@ void chainsaw::ReadConfigMessage::print()
 {
     for (kv t : data)
     {
-        cout << "[ key ] [" << t.key << "]";
+        std::cout << "[ key ] [" << t.key << "]";
         if (!t.value.empty())
         {
-            cout << " : " << endl;
-            for (string s : t.value)
+            std::cout << " : " << std::endl;
+            for (std::string s : t.value)
             {
-                cout << "[value] " << s << endl;
+                std::cout << "[value] " << s << std::endl;
             }
         }
     }
 }
 
-void chainsaw::ReadConfigMessage::print_error(string message)
+void chainsaw::ReadConfigMessage::print_error(std::string message)
 {
     chainsaw::print_error(message, "read_config_message");
 }

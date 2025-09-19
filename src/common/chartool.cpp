@@ -1,11 +1,11 @@
 #include "chartool.h"
 
-bool is_upper_char(char c)
+bool chainsaw::is_upper_char(char c)
 {
     return c >= 'A' && c <= 'Z';
 }
 
-bool is_lower_char(char c)
+bool chainsaw::is_lower_char(char c)
 {
     return c >= 'a' && c <= 'z';
 }

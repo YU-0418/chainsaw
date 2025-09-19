@@ -8,19 +8,19 @@ namespace chainsaw
 {
     class option
     {
-        vector<char> data;
+        std::vector<char> data;
 
     public:
         // -[char]
-        option(string s);
+        option(std::string s);
 
         bool is_contain(char c);
 
         // Determine whether all the characters exist
-        bool is_contain(string s);
+        bool is_contain(std::string s);
         
     private:
-        void print_error(string message);
+        void print_error(std::string message);
     };
 } // namespace chainsaw
 

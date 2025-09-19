@@ -1,14 +1,14 @@
 #include "include/table.h"
 
-void chainsaw::html_table::print_error(string message)
+void chainsaw::html_table::print_error(std::string message)
 {
     chainsaw::print_error(message, "html_table");
 }
 
-chainsaw::html_table::html_table(string config_file)
+chainsaw::html_table::html_table(std::string config_file)
 {
     ReadConfigMessage rcm(config_file);
-    vector<string> data;
+    std::vector<std::string> data;
 
     data = rcm.get_value_prefix("symb");
 
@@ -48,14 +48,14 @@ void chainsaw::html_table::read_bread_number(int number)
     br_number = number;
 }
 
-void chainsaw::html_table::read_tittle_color(string color)
+void chainsaw::html_table::read_tittle_color(std::string color)
 {
     tittle_color = color;
 }
 
-string addbr(string s, int number)
+std::string addbr(std::string s, int number)
 {
-    string res;
+    std::string res;
     int num = 0;
 
     int f_chinese = 0;
@@ -88,35 +88,35 @@ string addbr(string s, int number)
     return res;
 }
 
-void chainsaw::html_table::print_tr(string file, string save_file)
+void chainsaw::html_table::print_tr(std::string file, std::string save_file)
 {
 
-    vector<string> save_data;
+    std::vector<std::string> save_data;
 
-    vector<string> data = read_file(file);
+    std::vector<std::string> data = read_file(file);
 
-    for (string s : data)
+    for (std::string s : data)
     {
         // <tr>
         save_data.push_back("<tr>");
 
         chainsaw::stringtool tool(s);
 
-        vector<int> pos = tool.find_all(symbol);
+        std::vector<int> pos = tool.find_all(symbol);
         if (pos.empty())
         {
             print_error("no symbol");
             break;
         }
 
-        vector<string> s_data = tool.split(pos);
+        std::vector<std::string> s_data = tool.split(pos);
 
-        for (string &s : s_data)
+        for (std::string &s : s_data)
         {
             s = stringtool(s).trimmed();
         }
 
-        for (string s : s_data)
+        for (std::string s : s_data)
         {
             save_data.push_back("<td>" + addbr(s, br_number) + "</td>");
         }
@@ -128,13 +128,13 @@ void chainsaw::html_table::print_tr(string file, string save_file)
     write_file(save_file, 0b10).write(save_data);
 }
 
-void chainsaw::html_table::print_tr_1td(string file, string save_file)
+void chainsaw::html_table::print_tr_1td(std::string file, std::string save_file)
 {
-    vector<string> save_data;
+    std::vector<std::string> save_data;
 
-    vector<string> data = read_file(file);
+    std::vector<std::string> data = read_file(file);
 
-    for (string s : data)
+    for (std::string s : data)
     {
         // <tr>
         save_data.push_back("<tr>");

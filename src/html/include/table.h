@@ -11,7 +11,7 @@ namespace chainsaw
     {
         char symbol = 0;
         int br_number = -1;
-        string tittle_color = "";
+        std::string tittle_color = "";
 
     public:
         html_table() {}
@@ -30,7 +30,7 @@ namespace chainsaw
         // # tittle color
         // #000000
         // ->modify title color is black(#000000).
-        html_table(string config_file);
+        html_table(std::string config_file);
 
         // xxxSxxx -> [xxx] [xxx]
         void read_symbol_char(char c);
@@ -39,23 +39,23 @@ namespace chainsaw
         void read_bread_number(int number);
 
         //
-        void read_tittle_color(string color);
+        void read_tittle_color(std::string color);
 
         // <tr>
         //     <td>xxx</td>
         //     <td>xxx</td>
         // </tr>
-        void print_tr(string file, string save_file);
+        void print_tr(std::string file, std::string save_file);
 
         // <tr>
         //     <td colspan=2 align="center">xxx</td>
         // </tr>
-        void print_tr_1td(string file, string save_file);
+        void print_tr_1td(std::string file, std::string save_file);
 
         void print();
 
     private:
-        void print_error(string message);
+        void print_error(std::string message);
     };
 } // namespace chainsaw
 

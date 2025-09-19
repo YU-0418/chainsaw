@@ -1,19 +1,19 @@
 #include "readwritefile.h"
 
-bool chainsaw::isFileExists(const string &name)
+bool chainsaw::isFileExists(const std::string &name)
 {
     return std::ifstream(name.c_str()).good();
 }
 
-vector<string> chainsaw::read_file(string file, bool is_null_line_save)
+std::vector<std::string> chainsaw::read_file(std::string file, bool is_null_line_save)
 {
-    vector<string> data;
+    std::vector<std::string> data;
 
     std::ifstream rf(file, std::ios::in);
     if (!rf.good())
         print_error("no file -> [" + file + "]");
 
-    string str;
+    std::string str;
     while (std::getline(rf, str))
     {
         if (is_null_line_save || !str.empty())
@@ -25,7 +25,7 @@ vector<string> chainsaw::read_file(string file, bool is_null_line_save)
     return data;
 }
 
-chainsaw::write_file::write_file(string file, bool is_exist)
+chainsaw::write_file::write_file(std::string file, bool is_exist)
 {
     if (!is_exist && isFileExists(file))
     {
@@ -36,7 +36,7 @@ chainsaw::write_file::write_file(string file, bool is_exist)
     wf.open(file, std::ios::out | std::ios::app);
 }
 
-chainsaw::write_file::write_file(string file, int mode)
+chainsaw::write_file::write_file(std::string file, int mode)
 {
     int append = mode & 1;
     int exist = mode & 2;
@@ -52,18 +52,18 @@ chainsaw::write_file::write_file(string file, int mode)
     wf.open(file, openmode);
 }
 
-void chainsaw::write_file::write(string data, bool line)
+void chainsaw::write_file::write(std::string data, bool line)
 {
     wf << data;
     if (line)
-        wf << endl;
+        wf << std::endl;
 }
 
-void chainsaw::write_file::write(vector<string> data)
+void chainsaw::write_file::write(std::vector<std::string> data)
 {
-    for (string s : data)
+    for (std::string s : data)
     {
-        wf << s << endl;
+        wf << s << std::endl;
     }
 }
 

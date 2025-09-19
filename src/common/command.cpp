@@ -1,6 +1,6 @@
 #include "command.h"
 
-bool chainsaw::command::node::empty()
+bool chainsaw::command::node::empty() const
 {
     return value.empty() && arg.empty();
 }
@@ -12,15 +12,16 @@ void chainsaw::command::node::clear()
     mode = 0;
 }
 
-vector<string> pre(string data)
+std::vector<std::string> pre(std::string const & data)
 {
-    vector<string> res;
-
-    string buffer;
     int n = data.size();
+
+    std::vector<std::string> res;
+    res.reserve(n/2);
+
+    std::string buffer;
     for (int i = 0; i < n; ++i)
     {
-
         if (data[i] == ' ')
         {
             if (!buffer.empty())
@@ -29,7 +30,7 @@ vector<string> pre(string data)
                 buffer.clear();
             }
         }
-        else if (data[i] == '\\')
+        else if (data[i] == '\\' && i + 1 < n)
         {
             buffer += data[++i];
         }
@@ -42,25 +43,24 @@ vector<string> pre(string data)
     if (!buffer.empty())
     {
         res.push_back(buffer);
-        buffer.clear();
     }
 
     return res;
 }
 
-chainsaw::command::command(string s)
+chainsaw::command::command(std::string s)
 {
-    vector<string> pre_data = pre(s);
+    std::vector<std::string> pre_data = pre(s);
 
     parse_string_list(pre_data);
 }
 
-chainsaw::command::command(vector<string> arg)
+chainsaw::command::command(std::vector<std::string> arg)
 {
     parse_string_list(arg);
 }
 
-bool chainsaw::command::find(string option)
+bool chainsaw::command::find(std::string option)
 {
     bool res = false;
     for (node n : all)
@@ -74,9 +74,9 @@ bool chainsaw::command::find(string option)
     return res;
 }
 
-vector<string> chainsaw::command::get_option_arg(string option)
+std::vector<std::string> chainsaw::command::get_option_arg(std::string option)
 {
-    vector<string> res;
+    std::vector<std::string> res;
     for (node n : all)
     {
         if (n.value == option)
@@ -91,25 +91,24 @@ vector<string> chainsaw::command::get_option_arg(string option)
 
 void chainsaw::command::print()
 {
-    cout << "command print:(" << all.size() << ")" << endl;
+    std::cout << "command print:(" << all.size() << ")" << std::endl;
 
     for (node t : all)
     {
-        cout << "[" << t.mode << "]" << "[" << t.value << "]: ";
-        for (string s : t.arg)
+        std::cout << "[" << t.mode << "]" << "[" << t.value << "]: ";
+        for (std::string s : t.arg)
         {
-            cout << "[" << s << "]";
+            std::cout << "[" << s << "]";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 
-void chainsaw::command::parse_string_list(vector<string> data)
+void chainsaw::command::parse_string_list(std::vector<std::string> data)
 {
     node node_buffer;
 
-    // for (int i = 0; i < data.size(); ++i)
-    for (string s : data)
+    for (std::string s : data)
     {
         stringtool tool(s);
 
@@ -121,7 +120,7 @@ void chainsaw::command::parse_string_list(vector<string> data)
             if (~pos)
             {
                 // --c=xxx
-                string value = tool.split(pos, 0);
+                std::string value = tool.split(pos, 0);
 
                 if (value.empty())
                 {
@@ -136,7 +135,7 @@ void chainsaw::command::parse_string_list(vector<string> data)
                 }
 
                 node_buffer.value = value;
-                string arg = tool.split(pos, 1);
+                std::string arg = tool.split(pos, 1);
                 node_buffer.arg.push_back(arg);
                 node_buffer.mode = 1;
                 add_data(node_buffer);
@@ -152,7 +151,6 @@ void chainsaw::command::parse_string_list(vector<string> data)
                 node_buffer.value = tool();
             }
         }
-
         else if (tool.startsWith("-"))
         {
             if (!node_buffer.empty())
@@ -168,7 +166,7 @@ void chainsaw::command::parse_string_list(vector<string> data)
             if (~pos)
             {
                 // -c=xxx
-                string value = tool.split(pos, 0);
+                std::string value = tool.split(pos, 0);
 
                 if (value.empty())
                 {
@@ -183,7 +181,7 @@ void chainsaw::command::parse_string_list(vector<string> data)
                 }
 
                 node_buffer.value = value;
-                string arg = tool.split(pos, 1);
+                std::string arg = tool.split(pos, 1);
                 node_buffer.arg.push_back(arg);
 
                 node_buffer.mode = 1;
@@ -234,7 +232,7 @@ void chainsaw::command::parse_string_list(vector<string> data)
     }
 }
 
-void chainsaw::command::print_error(string message)
+void chainsaw::command::print_error(std::string message)
 {
     chainsaw::print_error(message, "command");
 }

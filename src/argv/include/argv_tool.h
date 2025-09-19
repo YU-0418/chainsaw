@@ -12,7 +12,7 @@ namespace chainsaw
 
     // [xx.exe,1,2] ->
     // return [1,2]
-    vector<string> recognize_argv(int argc, char **argv);
+    std::vector<std::string> recognize_argv(int argc, char **argv);
 
     class ARGV
     {
@@ -21,23 +21,23 @@ namespace chainsaw
     public:
         // -a xx xx -b xx
         // -> node{a, xx, xx} node{b, xx}
-        ARGV(vector<string> data);
+        ARGV(std::vector<std::string> data);
 
         // use 'recognize_argv' first
         ARGV(int argc, char **argv);
 
         // 
-        bool is_contain(string option);
+        bool is_contain(std::string option);
 
         // if find option,return its arg
         // if return-val is null, it maybe null or the option is not in the argv.
-        vector<string> get_argv(string option);
+        std::vector<std::string> get_argv(std::string option);
 
         // print all argv
         void print();
 
     private:
-        void print_error(string message);
+        void print_error(std::string message);
     };
 
 } // namespace chainsaw

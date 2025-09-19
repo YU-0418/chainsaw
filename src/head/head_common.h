@@ -2,19 +2,18 @@
 #define CHAINSAW_HEAD_HEADCOMMON
 
 #include <iostream>
-using std::cout;
-using std::endl;
-using std::cin;
-using std::cerr;
 
 #include <string>
-using std::string;
+#include <string.h>
 
 #include <vector>
-using std::vector;
 
 #include <cmath>
 #include <algorithm>
 #include <fstream>
+
+#include <thread>
+#include <mutex>
+#include <sstream>
 
 #endif // !CHAINSAW_HEAD_HEADCOMMON

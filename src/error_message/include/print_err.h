@@ -6,7 +6,7 @@
 namespace chainsaw
 {
     // "ERROR: ([chainsaw->class_msg]->)[message]"
-    void print_error(string message, string class_msg = "");
+    void print_error(std::string message, std::string class_msg = "");
 
 } // namespace chainsaw
 
